@@ -6,7 +6,7 @@ namespace AOPify.Test
     /// <summary>
     /// Create a class for your log operations
     /// </summary>
-    class ConsoleIaopLogger : IAOPLogger
+    class ConsoleLogger : IAOPLogger
     {
         public void Log(string format, params object[] args)
         {
@@ -48,7 +48,7 @@ namespace AOPify.Test
             //------------------------------------------
 
             AOPify.Let
-                .RegisterLogger(new ConsoleIaopLogger())
+                .RegisterLogger(new ConsoleLogger())
                 .Log("Before Log {0}".FormatWith(MethodBase.GetCurrentMethod().Name), "After Log {0}".FormatWith(MethodBase.GetCurrentMethod().Name))
                 .Run(() => Console.WriteLine("Run executed"));
 
