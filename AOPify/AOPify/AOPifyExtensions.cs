@@ -54,6 +54,17 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
+        public static AOPify Log(this AOPify aspect, string beforeMessage, string afterMessage)
+        {
+            return aspect.Combine(process =>
+            {
+                aspect.Logger.Log(beforeMessage);
+                process();
+                aspect.Logger.Log(afterMessage);
+            });
+        }
+
+        [DebuggerStepThrough]
         public static AOPify Before(this AOPify aopify, Action beforeAction)
         {
             aopify.BeforeAction = beforeAction;
@@ -66,7 +77,6 @@ namespace AOPify
             aopify.AfterAction = afterAction;
             return aopify;
         }
-
 
 
         [DebuggerStepThrough]

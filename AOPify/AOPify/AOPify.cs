@@ -8,8 +8,10 @@ namespace AOPify
 
         internal Action<Action> ActionChain;
         internal Delegate ProcessDelegate;
-        internal  Action BeforeAction;
+        internal Action BeforeAction;
         internal Action AfterAction;
+
+        internal IAOPLogger Logger;
 
         [DebuggerStepThrough]
         public AOPify Combine(Action<Action> newAspectDelegate)
@@ -61,6 +63,12 @@ namespace AOPify
                           }
                       });
             return returnValue;
+        }
+
+        public AOPify RegisterLogger(IAOPLogger logger)
+        {
+            Logger = logger;
+            return this;
         }
 
         public static AOPify Let
