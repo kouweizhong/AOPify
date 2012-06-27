@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 
 namespace AOPify
 {
@@ -58,9 +59,20 @@ namespace AOPify
         {
             return aspect.Combine(process =>
             {
-                aspect.Logger.Log(beforeMessage);
+                aspect.Logger.Logger.Log(beforeMessage);
                 process();
-                aspect.Logger.Log(afterMessage);
+                aspect.Logger.Logger.Log(afterMessage);
+            });
+        }
+
+        [DebuggerStepThrough]
+        public static AOPify Log(this AOPify aspect, MethodBase currentMethod)
+        {
+            return aspect.Combine(process =>
+            {
+                aspect.Logger.Logger.Log("START--> type :{0}, method :{1}".FormatWith(aspect.Logger.Target.Name, currentMethod.Name));
+                process();
+                aspect.Logger.Logger.Log("END--> type :{0}, method :{1}".FormatWith(aspect.Logger.Target.Name, currentMethod.Name));
             });
         }
 

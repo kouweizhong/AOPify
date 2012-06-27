@@ -32,26 +32,34 @@ namespace AOPify.Test
     {
         static void Main()
         {
+
+            ConsoleLogger consoleLogger = new ConsoleLogger();
             AOPify.Let
                 .Before(() => Console.WriteLine("Before"))
                 .After(() => Console.WriteLine("After"))
                 .Run(() => Console.WriteLine("Actual"));
 
-            //-------------------------
+            //------------------------------------------------------------------
             AOPify.Let.Catch(ex => Console.WriteLine(ex.Message)).Run(() =>
             {
                 Console.WriteLine("Run");
                 throw new Exception("Exception");
             });
 
+            //------------------------------------------------------------------
 
-            //------------------------------------------
 
             AOPify.Let
-                .RegisterLogger(new ConsoleLogger())
+                .RegisterLogger(Log.It.For(typeof(Program)).Use(consoleLogger))
                 .Log("Before Log {0}".FormatWith(MethodBase.GetCurrentMethod().Name), "After Log {0}".FormatWith(MethodBase.GetCurrentMethod().Name))
                 .Run(() => Console.WriteLine("Run executed"));
 
+            //------------------------------------------------------------------
+
+            AOPify.Let
+                .RegisterLogger(Log.It.For(typeof(Program)).Use(consoleLogger))
+                .Log(MethodBase.GetCurrentMethod())
+                .Run(() => Console.WriteLine("Run executed"));
 
             Console.Read();
         }
