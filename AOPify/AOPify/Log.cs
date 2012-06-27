@@ -17,12 +17,12 @@ namespace AOPify
         public Log For<T>(T target)
         {
             Target = target.GetType();
-            return new Log();
+            return this;
         }
         public Log For(Type type)
         {
             Target = type;
-            return new Log();
+            return this;
         }
 
         public Log Use<T>() where T : IAOPLogger

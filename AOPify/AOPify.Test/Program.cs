@@ -57,7 +57,7 @@ namespace AOPify.Test
             //------------------------------------------------------------------
 
             AOPify.Let
-                .RegisterLogger(Log.It.For(typeof(Program)).Use(consoleLogger))
+                .RegisterLogger(Log.It.For(typeof(Program)).Use<ConsoleLogger>())
                 .Log(MethodBase.GetCurrentMethod())
                 .Run(() => Console.WriteLine("Run executed"));
 
