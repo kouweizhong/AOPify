@@ -57,6 +57,13 @@
   <ItemGroup>
     <Compile Include="AOPify.cs" />
     <Compile Include="AOPifyExtensions.cs" />
+    <Compile Include="Aspects\AspectObject.cs" />
+    <Compile Include="Aspects\LogAspect.cs" />
+    <Compile Include="Aspects\LogProperty.cs" />
+    <Compile Include="Aspects\LogAttribute.cs" />
+    <Compile Include="Common\AspectHelper.cs" />
+    <Compile Include="Common\ReflectionHelper.cs" />
+    <Compile Include="Enum\Mode.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IAOPLogger.cs" />
     <Compile Include="Log.cs" />

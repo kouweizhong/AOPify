@@ -32,15 +32,16 @@ namespace AOPify
         public void Run(Action process)
         {
             if (BeforeAction != null) BeforeAction();
+
             if (ActionChain == null)
             {
                 process();
-
             }
             else
             {
                 ActionChain(process);
             }
+
             if (AfterAction != null) AfterAction();
         }
 

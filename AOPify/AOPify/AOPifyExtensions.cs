@@ -2,6 +2,9 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using AOPify.Common;
+using AOPify.Enum;
 
 namespace AOPify
 {
@@ -17,7 +20,6 @@ namespace AOPify
                                           process();
                                       });
         }
-
 
         [DebuggerStepThrough]
         public static AOPify Until(this AOPify aopify, Func<bool> test)
@@ -55,25 +57,27 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify Log(this AOPify aspect, string beforeMessage, string afterMessage)
+        public static AOPify Log(this AOPify aopify, string beforeMessage, string afterMessage)
         {
-            return aspect.Combine(process =>
+            return aopify.Combine(process =>
             {
-                aspect.Logger.Logger.Log(beforeMessage);
+                aopify.Logger.Logger.Log(beforeMessage);
                 process();
-                aspect.Logger.Logger.Log(afterMessage);
+                aopify.Logger.Logger.Log(afterMessage);
             });
         }
 
         [DebuggerStepThrough]
-        public static AOPify Log(this AOPify aspect, MethodBase currentMethod)
+        public static AOPify Log(this AOPify aopify, MethodBase currentMethod)
         {
-            return aspect.Combine(process =>
-            {
-                aspect.Logger.Logger.Log("START--> type :{0}, method :{1}".FormatWith(aspect.Logger.Target.Name, currentMethod.Name));
-                process();
-                aspect.Logger.Logger.Log("END--> type :{0}, method :{1}".FormatWith(aspect.Logger.Target.Name, currentMethod.Name));
-            });
+            return aopify.Combine(process =>
+           {
+               aopify.Logger.CurrentMethod = currentMethod;
+               aopify.Logger.Logger.Log(
+                   "START type :{0}, method :{1}".FormatWith(aopify.Logger.Target.Name, currentMethod == null ? process.Method.Name : currentMethod.Name));
+               process();
+               aopify.Logger.Logger.Log("END type :{0}, method :{1}".FormatWith(aopify.Logger.Target.Name, currentMethod == null ? process.Method.Name : currentMethod.Name));
+           });
         }
 
         [DebuggerStepThrough]
@@ -90,6 +94,33 @@ namespace AOPify
             return aopify;
         }
 
+        [DebuggerStepThrough]
+        public static AOPify HowLong(this AOPify aopify, string startMessage, string endMessage)
+        {
+            return aopify.Combine(process =>
+            {
+                DateTime start = DateTime.Now;
+                aopify.Logger.Logger.Log("{0} {1} Method Name : {2}".FormatWith(startMessage, start, aopify.Logger.CurrentMethod.Name));
+                process();
+                DateTime end = DateTime.Now;
+                TimeSpan duration = end - start;
+                aopify.Logger.Logger.Log("{0} : End Time :{1} , Method Name: {2}".FormatWith(endMessage, end, aopify.Logger.CurrentMethod.Name));
+            });
+        }
+
+        [DebuggerStepThrough]
+        public static AOPify HowLong(this AOPify aopify)
+        {
+            return aopify.Combine(process =>
+            {
+                DateTime start = DateTime.Now;
+                aopify.Logger.Logger.Log("Start Time : {0}, Method Name : {1}".FormatWith(start, aopify.Logger.CurrentMethod.Name));
+                process();
+                DateTime end = DateTime.Now;
+                TimeSpan duration = end - start;
+                aopify.Logger.Logger.Log("End Time : {0}, Method Name :{1}, TotalMs: {2}".FormatWith(end, aopify.Logger.CurrentMethod.Name, duration.TotalMilliseconds));
+            });
+        }
 
         [DebuggerStepThrough]
         public static AOPify Catch(this AOPify aopify, Action<Exception> catchAction)

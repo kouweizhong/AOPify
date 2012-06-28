@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace AOPify
 {
@@ -13,6 +14,7 @@ namespace AOPify
         }
         internal Type Target;
         internal IAOPLogger Logger;
+        internal MethodBase CurrentMethod;
 
         public Log For<T>(T target)
         {
