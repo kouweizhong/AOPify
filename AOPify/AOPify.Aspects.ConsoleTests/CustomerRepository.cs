@@ -26,9 +26,9 @@ namespace AOPify.Aspects.ConsoleTests
             return new Customer(id);
         }
 
-        [PreProcess(typeof(ConsolePreAspectProcessor), PreProcessMode.OnBefore, PreProcessMode.WithInputParameters)]
-        [PostProcess(typeof(ChangeExceptionAspectProcessor))]
-        [PostProcess(typeof(ConsoleExceptionAspectProcessor))]
+        //[PreProcess(typeof(ConsolePreAspectProcessor), PreProcessMode.OnBefore, PreProcessMode.WithInputParameters,PreProcessMode.CatchError)]
+        //[PostProcess(typeof(ChangeExceptionAspectProcessor))]
+        //[PostProcess(typeof(ConsoleExceptionAspectProcessor))]
         public void ThrowException()
         {
             throw new ApplicationException("An error");
