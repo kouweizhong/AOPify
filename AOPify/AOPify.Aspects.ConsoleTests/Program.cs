@@ -9,7 +9,7 @@ namespace AOPify.Aspects.ConsoleTests
         {
             CustomerRepository customerRepository = new CustomerRepository();
             Console.WriteLine(customerRepository.GetCustomerByID(10));
-            customerRepository.ThrowException();
+            //customerRepository.ThrowException();
 
             Console.ReadLine();
         }

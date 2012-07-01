@@ -6,7 +6,7 @@ using AOPify.Aspects.Sinks;
 namespace AOPify.Aspects.AspectProperties
 {
     //IContextProperty, IContributeServerContextSink
-    public class InterceptProperty : IContextProperty, IContributeObjectSink
+    public class AOPifyProperty : IContextProperty, IContributeObjectSink
     {
         #region IContextProperty Members
 
@@ -14,13 +14,13 @@ namespace AOPify.Aspects.AspectProperties
         {
             get
             {
-                return "Intercept";
+                return "AOPify";
             }
         }
 
         public bool IsNewContextOK(Context newContext)
         {
-            InterceptProperty property = newContext.GetProperty("Intercept") as InterceptProperty;
+            AOPifyProperty property = newContext.GetProperty("AOPify") as AOPifyProperty;
             return property != null;
         }
 

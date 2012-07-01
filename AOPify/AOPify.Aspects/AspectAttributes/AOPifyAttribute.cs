@@ -19,21 +19,21 @@ namespace AOPify.Aspects.AspectAttributes
 
         public override void GetPropertiesForNewContext(IConstructionCallMessage ctorMsg)
         {
-            ctorMsg.ContextProperties.Add(new InterceptProperty());
+            ctorMsg.ContextProperties.Add(new AOPifyProperty());
         }
 
         public override bool IsContextOK(Context context, IConstructionCallMessage ctorMsg)
         {
-            InterceptProperty interceptProperty = context.GetProperty("AOPify") as InterceptProperty;
+            AOPifyProperty aoPifyProperty = context.GetProperty("AOPify") as AOPifyProperty;
 
-            return interceptProperty != null;
+            return aoPifyProperty != null;
         }
 
         public override bool IsNewContextOK(Context newContext)
         {
-            InterceptProperty interceptProperty = newContext.GetProperty("AOPify") as InterceptProperty;
+            AOPifyProperty aoPifyProperty = newContext.GetProperty("AOPify") as AOPifyProperty;
 
-            return interceptProperty != null;
+            return aoPifyProperty != null;
         }
     }
 }
