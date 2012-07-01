@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace AOPify.Aspects
+namespace AOPify.Base
 {
 
     public abstract class AspectObject : ContextBoundObject

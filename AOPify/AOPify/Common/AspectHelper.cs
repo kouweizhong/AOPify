@@ -13,7 +13,7 @@ namespace AOPify.Common
 
             for (int i = 0; i < methodMessageCall.ArgCount; i++)
             {
-                stringBuilder.AppendFormat("{0}:{1},".FormatWith(methodMessageCall.GetArgName(i), methodMessageCall.Args[i]));
+                stringBuilder.Append("{0}:{1},".FormatWith(methodMessageCall.GetArgName(i), methodMessageCall.Args[i]));
             }
 
             stringBuilder.Remove(stringBuilder.Length - 1, 1);

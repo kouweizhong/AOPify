@@ -1,0 +1,205 @@
+﻿<head>
+    <style type="text/css">
+        .style1
+        {
+            width: 313px;
+        }
+        .style2
+        {
+            width: 286px;
+        }
+        .style3
+        {
+            width: 366px;
+        }
+    </style>
+</head>
+<table border="2" cellpadding="2" cellspacing="0" 
+    style="margin: 0px; padding: 0px; border: medium dotted #800000; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: rgb(255, 255, 255); border-collapse: collapse; border-spacing: inherit; color: rgb(51, 51, 51); font-family: georgia, verdana, arial, sans-serif; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 16px; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-repeat: initial initial; table-layout: auto; empty-cells: show; caption-side: top; text-decoration: blink; width: 1600px;" 
+    unselectable="on">
+    <tbody style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+        <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+            <td class="style2" style="border: medium groove #000080" valign="top">
+                <strong>Approach</strong></td>
+            <td class="style1" style="border: medium groove #000080" valign="top">
+                Advantages</td>
+            <td class="style3" style="border: medium groove #000080" valign="top">
+                Disadvantages</td>
+        </tr>
+        <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+            <td class="style2" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Remoting Proxies</li>
+                </ul>
+            </td>
+            <td class="style1" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Easy to implement, because of the .Net framework support</li>
+                </ul>
+            </td>
+            <td class="style3" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Somewhat heavy weight<br />
+                        Can only be used on interfaces or MarshalByRefObjects</li>
+                </ul>
+            </td>
+        </tr>
+        <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+            <td class="style2" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Deriving from ContextBoundObject</li>
+                </ul>
+            </td>
+            <td class="style1" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Easiest to implement<br />
+                        Native support for call interception</li>
+                </ul>
+            </td>
+            <td class="style3" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Very costly in terms of performance</li>
+                </ul>
+            </td>
+        </tr>
+        <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+            <td class="style2" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Compile-time subclassing<br />
+                        ( Rhino Proxy )</li>
+                </ul>
+            </td>
+            <td class="style1" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Easiest to understand<br />
+                    </li>
+                </ul>
+            </td>
+            <td class="style3" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Interfaces or virtual methods only</li>
+                </ul>
+            </td>
+        </tr>
+        <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+            <td class="style2" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Runtime subclassing<br />
+                        ( Castle Dynamic Proxy )</li>
+                </ul>
+            </td>
+            <td class="style1" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Easiest to understand<br />
+                        Very flexible</li>
+                </ul>
+            </td>
+            <td class="style3" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Complex implementation (but already exists)<br />
+                        Interfaces or virtual methods only</li>
+                </ul>
+            </td>
+        </tr>
+        <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+            <td class="style2" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Hooking into the profiler API<br />
+                        ( Type Mock )</li>
+                </ul>
+            </td>
+            <td class="style1" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Extremely powerful</li>
+                </ul>
+            </td>
+            <td class="style3" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Performance?<br />
+                        Complex implementation (COM API, require separate runner, etc)</li>
+                </ul>
+            </td>
+        </tr>
+        <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+            <td class="style2" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Compile time IL-weaving<span class="Apple-converted-space">&nbsp;</span><br />
+                        ( Post Sharp / Cecil )</li>
+                </ul>
+            </td>
+            <td class="style1" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Very powerful<br />
+                        Good performance</li>
+                </ul>
+            </td>
+            <td class="style3" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Very hard to implement</li>
+                </ul>
+            </td>
+        </tr>
+        <tr style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 16px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+            <td class="style2" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Runtime IL-weaving<br />
+                        ( Post Sharp / Cecil )</li>
+                </ul>
+            </td>
+            <td class="style1" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li>Very powerful<br />
+                        Good performance</li>
+                </ul>
+            </td>
+            <td class="style3" 
+                style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 0.9em; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial;" 
+                valign="top">
+                <ul>
+                    <li><em style="margin: 0px; padding: 0px; border: 0px; outline: 0px; font-size: 14px; vertical-align: baseline; background-color: transparent; background-position: initial initial; background-repeat: initial initial; ">
+                        Very<span class="Apple-converted-space">&nbsp;</span></em>hard to implement</li>
+                </ul>
+            </td>
+        </tr>
+    </tbody>
+</table>

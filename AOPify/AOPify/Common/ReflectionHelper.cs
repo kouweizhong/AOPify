@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 
 namespace AOPify.Common
@@ -25,6 +26,11 @@ namespace AOPify.Common
             }
 
             return stringBuilder.ToString().FormatWith(namevalues);
+        }
+
+        public static T[] GetAttributes<T>(IMethodCallMessage msg, bool inherit)
+        {
+            return msg.MethodBase.GetCustomAttributes(typeof(T), true) as T[];
         }
     }
 }
