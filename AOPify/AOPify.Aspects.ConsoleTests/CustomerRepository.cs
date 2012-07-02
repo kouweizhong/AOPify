@@ -19,7 +19,6 @@ namespace AOPify.Aspects.ConsoleTests
         }
 
         [PreProcess(typeof(ConsolePreAspectProcessor),PreProcessMode.OnBefore,PreProcessMode.WithInputParameters)]
-        [PostProcess(typeof(ConsoleExceptionAspectProcessor))]
         [PostProcess(typeof(ConsolePostAspectProcessor),PostProcessMode.OnAfter,PostProcessMode.WithReturnType,PostProcessMode.OnError, PostProcessMode.HowLong)]
         public Customer GetCustomerByID(int id)
         {
@@ -27,7 +26,7 @@ namespace AOPify.Aspects.ConsoleTests
         }
 
         //[PreProcess(typeof(ConsolePreAspectProcessor), PreProcessMode.OnBefore, PreProcessMode.WithInputParameters,PreProcessMode.CatchError)]
-        // [PostProcess(typeof(ConsolePostAspectProcessor), PostProcessMode.OnAfter, PostProcessMode.OnError, PostProcessMode.HowLong)]
+        //[PostProcess(typeof(ConsolePostAspectProcessor), PostProcessMode.OnAfter, PostProcessMode.OnError, PostProcessMode.HowLong)]
         public void ThrowException()
         {
             throw new ApplicationException("An error");
