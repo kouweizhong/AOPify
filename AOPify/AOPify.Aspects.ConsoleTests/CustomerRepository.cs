@@ -27,8 +27,7 @@ namespace AOPify.Aspects.ConsoleTests
         }
 
         //[PreProcess(typeof(ConsolePreAspectProcessor), PreProcessMode.OnBefore, PreProcessMode.WithInputParameters,PreProcessMode.CatchError)]
-        //[PostProcess(typeof(ChangeExceptionAspectProcessor))]
-        //[PostProcess(typeof(ConsoleExceptionAspectProcessor))]
+        // [PostProcess(typeof(ConsolePostAspectProcessor), PostProcessMode.OnAfter, PostProcessMode.OnError, PostProcessMode.HowLong)]
         public void ThrowException()
         {
             throw new ApplicationException("An error");
