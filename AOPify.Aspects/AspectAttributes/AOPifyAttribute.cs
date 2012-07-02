@@ -15,6 +15,7 @@ namespace AOPify.Aspects.AspectAttributes
 
         public override void Freeze(Context newContext)
         {
+            
         }
 
         public override void GetPropertiesForNewContext(IConstructionCallMessage ctorMsg)

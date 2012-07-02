@@ -57,12 +57,10 @@
   <ItemGroup>
     <Compile Include="AOPify.cs" />
     <Compile Include="AOPifyExtensions.cs" />
-    <Compile Include="Base\AspectObject.cs" />
-    <Compile Include="Common\AspectHelper.cs" />
+    <Compile Include="Common\ExceptionUtils.cs" />
     <Compile Include="Common\ReflectionHelper.cs" />
     <Compile Include="Enum\PreProcessMode.cs" />
     <Compile Include="Enum\PostProcessMode.cs" />
-    <Compile Include="Enum\Mode.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IAOPLogger.cs" />
     <Compile Include="Log.cs" />
@@ -93,7 +91,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2012/6/23" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
+      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2012/6/23" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,7 +2,7 @@ using System;
 
 namespace AOPify.Aspects.Common
 {
-    public class ExecutionTimer
+    internal class ExecutionTimer
     {
         public DateTime StartDate { get; set; }
         public TimeSpan Duration

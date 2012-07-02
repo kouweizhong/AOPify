@@ -1,10 +1,8 @@
 using System;
 
-namespace AOPify.Base
+namespace AOPify.Aspects.Base
 {
-
     public abstract class AspectObject : ContextBoundObject
     {
-       
     }
 }

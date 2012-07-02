@@ -68,14 +68,14 @@
     <Compile Include="AspectProperties\AOPifyProperty.cs" />
     <Compile Include="Attributes\PostProcessAttribute.cs" />
     <Compile Include="Attributes\PreProcessAttribute.cs" />
+    <Compile Include="Base\AspectObject.cs" />
+    <Compile Include="Common\AspectHelper.cs" />
     <Compile Include="Common\ExecutionTimer.cs" />
     <Compile Include="Contexts\MethodCallContext.cs" />
     <Compile Include="Contexts\MethodReturnContext.cs" />
     <Compile Include="IProcessor\ILoggable.cs" />
     <Compile Include="IProcessor\IPostAspectProcessor.cs" />
     <Compile Include="IProcessor\IPreAspectProcessor.cs" />
-    <Compile Include="Processors\ChangeExceptionProcessor.cs" />
-    <Compile Include="Processors\ExecutionTimeProcessor.cs" />
     <Compile Include="Processors\ExceptionHandlingProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sinks\AOPifySink.cs" />

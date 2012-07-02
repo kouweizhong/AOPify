@@ -5,7 +5,7 @@ using AOPify.Aspects.Sinks;
 
 namespace AOPify.Aspects.AspectProperties
 {
-    public class AOPifyProperty : IContextProperty, IContributeObjectSink //IContributeServerContextSink
+    internal class AOPifyProperty : IContextProperty, IContributeObjectSink //IContributeServerContextSink
     {
         #region IContextProperty Members
 

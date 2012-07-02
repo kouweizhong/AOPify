@@ -1,8 +1,8 @@
 using System;
 using AOPify.Aspects.AspectAttributes;
 using AOPify.Aspects.Attributes;
+using AOPify.Aspects.Base;
 using AOPify.Aspects.Processors;
-using AOPify.Base;
 using AOPify.Enum;
 
 namespace AOPify.Aspects.ConsoleTests
@@ -18,33 +18,27 @@ namespace AOPify.Aspects.ConsoleTests
             set;
         }
 
-        [PreProcess(typeof(ConsolePreAspectProcessor),PreProcessMode.OnBefore,PreProcessMode.WithInputParameters)]
-        [PostProcess(typeof(ConsolePostAspectProcessor),PostProcessMode.OnAfter,PostProcessMode.WithReturnType,PostProcessMode.OnError, PostProcessMode.HowLong)]
+        [PreProcess(typeof(ConsolePreAspectProcessor), PreProcessMode.OnBefore, PreProcessMode.WithInputParameters)]
+        [PostProcess(typeof(ConsolePostAspectProcessor), PostProcessMode.OnAfter, PostProcessMode.WithReturnType, PostProcessMode.OnError, PostProcessMode.HowLong)]
         public Customer GetCustomerByID(int id)
         {
             return new Customer(id);
         }
 
-        //[PreProcess(typeof(ConsolePreAspectProcessor), PreProcessMode.OnBefore, PreProcessMode.WithInputParameters,PreProcessMode.CatchError)]
-        //[PostProcess(typeof(ConsolePostAspectProcessor), PostProcessMode.OnAfter, PostProcessMode.OnError, PostProcessMode.HowLong)]
-        public void ThrowException()
+        [PreProcess(typeof(ConsolePreAspectProcessor), PreProcessMode.OnBefore, PreProcessMode.WithInputParameters)]
+        [PostProcess(typeof(ConsolePostAspectProcessor), PostProcessMode.OnAfter, PostProcessMode.OnError, PostProcessMode.HowLong)]
+        public Customer ThrowException()
         {
-            throw new ApplicationException("An error");
-        }
-    }
+            //Use hybrid
+            AOPify.Let
+               .Catch(exception => Console.WriteLine(exception.Message))
+               .Run(() =>
+               {
+                   Console.WriteLine("Before Exception");
+                   throw new ApplicationException("An error");
+               });
 
-    public class Customer
-    {
-        private readonly int _id;
-
-        public Customer(int id)
-        {
-            _id = id;
-        }
-
-        public int Id
-        {
-            get { return _id; }
+            return null;
         }
     }
 }

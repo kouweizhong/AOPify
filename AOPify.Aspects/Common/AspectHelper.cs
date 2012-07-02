@@ -1,9 +1,9 @@
-﻿using System.Runtime.Remoting.Messaging;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 
-namespace AOPify.Common
+namespace AOPify.Aspects.Common
 {
-    public static class AspectHelper
+    internal static class AspectHelper
     {
         public static string GetFormattedInputParameters(IMethodMessage methodMessageCall)
         {

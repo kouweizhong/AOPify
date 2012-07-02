@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using AOPify.Aspects.Attributes;
 using AOPify.Aspects.Common;
@@ -10,11 +8,10 @@ using AOPify.Enum;
 
 namespace AOPify.Aspects.Sinks
 {
-    public class AOPifySink : IMessageSink
+    internal class AOPifySink : IMessageSink
     {
         private ExecutionTimer _timer;
         private readonly IMessageSink _nextSink;
-        private bool _isCatchErrorCalled;
 
         public AOPifySink(IMessageSink nextSink)
         {
@@ -36,23 +33,14 @@ namespace AOPify.Aspects.Sinks
             IMethodCallMessage methodCallMessage = (message as IMethodCallMessage);
             MethodCallContext callContext = new MethodCallContext(ref methodCallMessage);
             PreProcess(ref callContext);
-            IMessage rtnMsg = null;
+            IMessage returnMessage = null;
 
-            try
-            {
-                //Todo: try catch issue
-                _timer = new ExecutionTimer();
-                _timer.Start(callContext.MethodName);
-                rtnMsg = _nextSink.SyncProcessMessage(message);
-            }
-            catch(Exception)
-            {
-                if (!_isCatchErrorCalled)
-                    throw;
-            }
+            //Todo: try catch issue
+            _timer = new ExecutionTimer();
+            _timer.Start(callContext.MethodName);
 
-            IMethodReturnMessage methodReturnMessage = (rtnMsg as IMethodReturnMessage);
-
+            returnMessage = _nextSink.SyncProcessMessage(message);
+            IMethodReturnMessage methodReturnMessage = (returnMessage as IMethodReturnMessage);
             PostProcess(message as IMethodCallMessage, methodReturnMessage);
 
             return methodReturnMessage;
@@ -75,7 +63,6 @@ namespace AOPify.Aspects.Sinks
             foreach (PreProcessAttribute attribute in attributes)
             {
                 PreProcessMode[] preProcessModes = attribute.GetProcessModes();
-                _isCatchErrorCalled = CheckIsCacthErrorCalled(preProcessModes);
 
                 foreach (PreProcessMode processMode in preProcessModes)
                 {
@@ -86,10 +73,6 @@ namespace AOPify.Aspects.Sinks
             }
         }
 
-        private bool CheckIsCacthErrorCalled(IEnumerable<PreProcessMode> preProcessModes)
-        {
-            return preProcessModes.Contains(PreProcessMode.CatchError);
-        }
 
         private void PostProcess(IMethodCallMessage callMsg, IMethodReturnMessage returnMessage)
         {
