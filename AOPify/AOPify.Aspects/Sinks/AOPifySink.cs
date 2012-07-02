@@ -34,14 +34,15 @@ namespace AOPify.Aspects.Sinks
         public IMessage SyncProcessMessage(IMessage message)
         {
             IMethodCallMessage methodCallMessage = (message as IMethodCallMessage);
-            //TODO : Reeview required
-            MethodCallContext context = new MethodCallContext(ref methodCallMessage);
-            PreProcess(ref context);
+            MethodCallContext callContext = new MethodCallContext(ref methodCallMessage);
+            PreProcess(ref callContext);
             IMessage rtnMsg = null;
 
             try
             {
-                //Todo: try catch not working
+                //Todo: try catch issue
+                _timer = new ExecutionTimer();
+                _timer.Start(callContext.MethodName);
                 rtnMsg = _nextSink.SyncProcessMessage(message);
             }
             catch(Exception)
@@ -53,6 +54,7 @@ namespace AOPify.Aspects.Sinks
             IMethodReturnMessage methodReturnMessage = (rtnMsg as IMethodReturnMessage);
 
             PostProcess(message as IMethodCallMessage, methodReturnMessage);
+
             return methodReturnMessage;
         }
 
@@ -96,10 +98,6 @@ namespace AOPify.Aspects.Sinks
             foreach (PostProcessAttribute attribute in attributes)
             {
                 MethodCallContext callContext = new MethodCallContext(ref callMsg);
-
-                _timer = new ExecutionTimer();
-                _timer.Start(callContext.MethodName);
-
                 MethodReturnContext returnContext = new MethodReturnContext(returnMessage);
 
                 foreach (PostProcessMode processMode in attribute.GetProcessModes())
