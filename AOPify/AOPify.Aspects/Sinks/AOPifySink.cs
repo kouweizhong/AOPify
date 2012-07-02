@@ -133,7 +133,6 @@ namespace AOPify.Aspects.Sinks
                 case PostProcessMode.HowLong:
                     _timer.Finish();
                     attribute.AspectProcessor.Log("Total time for {0}:{1}ms".FormatWith(_timer.Operation, _timer.Duration.Milliseconds));
-                    //todo:
                     break;
                 case PostProcessMode.OnError:
                     if (returnContext.Exception != null)
