@@ -1,6 +1,6 @@
 <strong>AOPify</strong> provides basic AOP features with fluent style.
 
-List of supported methods,
+<strong>List of supported methods</strong>
   - Until
   - Delay
   - While
@@ -16,7 +16,7 @@ List of supported methods,
   - Return
   - RegisterLogger
   
-List of supported attributes with process modes and processors
+<strong>List of supported attributes with process modes and processors</strong>
 <br/>
 (sample usage exist in source code look at: https://github.com/ziyasal/AOPify/tree/master/AOPify.Aspects.ConsoleTests)
   - PreProcess  : with options 
