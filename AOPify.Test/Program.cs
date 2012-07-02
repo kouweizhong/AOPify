@@ -15,7 +15,7 @@ namespace AOPify.Test
                 .Run(() => Console.WriteLine("Actual"));
 
             Console.WriteLine("-----------------------------------------------------------------------------------------------");
-            
+
             //Catch
             AOPify.Let.Catch(ex => Console.WriteLine(ex.Message)).Run(() =>
             {
@@ -54,6 +54,23 @@ namespace AOPify.Test
             MyMethod("Test", 5, 8);
 
             Console.WriteLine("-----------------------------------------------------------------------------------------------");
+
+            //Delay
+            AOPify.Let
+               .RegisterLogger(Log.It.For(typeof(Program)).Use<ConsoleLogger>())
+               .Log(MethodBase.GetCurrentMethod())
+               .Delay(10000)
+               .Run(() => Console.WriteLine("Delay : Run executed"));
+
+            Console.WriteLine("-----------------------------------------------------------------------------------------------");
+
+            //Until
+            AOPify.Let
+               .RegisterLogger(Log.It.For(typeof(Program)).Use<ConsoleLogger>())
+               .Log(MethodBase.GetCurrentMethod())
+               .Until(() => new Random().Next(0, 100) % 5 == 0)
+               .Run(() => Console.WriteLine("Until : Run executed"));
+
 
             Console.Read();
         }

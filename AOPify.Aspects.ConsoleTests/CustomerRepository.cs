@@ -2,8 +2,8 @@ using System;
 using AOPify.Aspects.AspectAttributes;
 using AOPify.Aspects.Attributes;
 using AOPify.Aspects.Base;
+using AOPify.Aspects.Enum;
 using AOPify.Aspects.Processors;
-using AOPify.Enum;
 
 namespace AOPify.Aspects.ConsoleTests
 {

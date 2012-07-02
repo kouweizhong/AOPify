@@ -3,8 +3,7 @@ using System.Runtime.Remoting.Messaging;
 using AOPify.Aspects.Attributes;
 using AOPify.Aspects.Common;
 using AOPify.Aspects.Contexts;
-using AOPify.Common;
-using AOPify.Enum;
+using AOPify.Aspects.Enum;
 
 namespace AOPify.Aspects.Sinks
 {
@@ -33,13 +32,12 @@ namespace AOPify.Aspects.Sinks
             IMethodCallMessage methodCallMessage = (message as IMethodCallMessage);
             MethodCallContext callContext = new MethodCallContext(ref methodCallMessage);
             PreProcess(ref callContext);
-            IMessage returnMessage = null;
 
             //Todo: try catch issue
             _timer = new ExecutionTimer();
             _timer.Start(callContext.MethodName);
 
-            returnMessage = _nextSink.SyncProcessMessage(message);
+            IMessage returnMessage = _nextSink.SyncProcessMessage(message);
             IMethodReturnMessage methodReturnMessage = (returnMessage as IMethodReturnMessage);
             PostProcess(message as IMethodCallMessage, methodReturnMessage);
 

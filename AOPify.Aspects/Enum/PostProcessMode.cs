@@ -1,4 +1,4 @@
-namespace AOPify.Enum
+namespace AOPify.Aspects.Enum
 {
     public enum PostProcessMode
     {

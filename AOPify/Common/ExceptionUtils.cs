@@ -62,10 +62,7 @@ namespace AOPify.Common
             var name = new AssemblyName("DynamicFilter");
             AssemblyBuilder assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(name, k_debug ? AssemblyBuilderAccess.RunAndSave : AssemblyBuilderAccess.Run);
             ModuleBuilder module;
-            if (k_debug)
-                module = assembly.DefineDynamicModule("DynamicFilter", "DynamicFilter.dll");
-            else
-                module = assembly.DefineDynamicModule("DynamicFilter");
+            module = k_debug ? assembly.DefineDynamicModule("DynamicFilter", "DynamicFilter.dll") : assembly.DefineDynamicModule("DynamicFilter");
 
             assembly.SetCustomAttribute(new CustomAttributeBuilder(
                                             typeof(RuntimeCompatibilityAttribute).GetConstructor(new Type[] { }),
@@ -78,7 +75,7 @@ namespace AOPify.Common
                                             new object[] { DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints }));
 
             TypeBuilder type = module.DefineType("Filter", TypeAttributes.Class | TypeAttributes.Public);
-            var argTypes = new Type[] { typeof(Action), typeof(Func<Exception, bool>), typeof(Action<Exception>) };
+            var argTypes = new[] { typeof(Action), typeof(Func<Exception, bool>), typeof(Action<Exception>) };
             MethodBuilder meth = type.DefineMethod("InvokeWithFilter", MethodAttributes.Public | MethodAttributes.Static, typeof(void), argTypes);
 
             var il = meth.GetILGenerator();

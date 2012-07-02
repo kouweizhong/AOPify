@@ -1,6 +1,6 @@
 using System;
+using AOPify.Aspects.Enum;
 using AOPify.Aspects.IProcessor;
-using AOPify.Enum;
 
 namespace AOPify.Aspects.Attributes
 {
