@@ -15,7 +15,9 @@ List of supported methods,
   - Run
   - Return
   - RegisterLogger
-List of supported attributes with process modes and processors 
+  
+List of supported attributes with process modes and processors
+<br/>
 (sample usage exist in source code look at: https://github.com/ziyasal/AOPify/tree/master/AOPify.Aspects.ConsoleTests)
   - PreProcess  : with options 
       - PreProcessMode.OnBefore,
