@@ -6,6 +6,5 @@ namespace AOPify.Aspects.Enum
         HowLong,
         OnError,
         WithReturnType
-       
     }
 }

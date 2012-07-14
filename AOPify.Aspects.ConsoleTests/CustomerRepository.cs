@@ -3,7 +3,6 @@ using AOPify.Aspects.AspectAttributes;
 using AOPify.Aspects.Attributes;
 using AOPify.Aspects.Base;
 using AOPify.Aspects.Enum;
-using AOPify.Aspects.Processors;
 
 namespace AOPify.Aspects.ConsoleTests
 {
@@ -12,9 +11,7 @@ namespace AOPify.Aspects.ConsoleTests
     {
         public int Count
         {
-            [PreProcess(typeof(ConsolePreAspectProcessor))]
             get;
-            [PreProcess(typeof(ConsolePreAspectProcessor))]
             set;
         }
 

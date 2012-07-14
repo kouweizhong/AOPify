@@ -8,7 +8,7 @@ namespace AOPify.Aspects.ConsoleTests
     {
         public void Process(ref MethodCallContext callContext)
         {
-           // Log(String.Format("PreProcessing:{0}", callContext.MethodName));
+            // Log(String.Format("PreProcessing:{0}", callContext.MethodName));
         }
 
         public void Log(string message)

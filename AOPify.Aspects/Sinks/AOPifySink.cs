@@ -9,11 +9,20 @@ namespace AOPify.Aspects.Sinks
 {
     internal class AOPifySink : IMessageSink
     {
+        private readonly ProcessMode _processMode;
+        private readonly Type _processorType;
         private ExecutionTimer _timer;
         private readonly IMessageSink _nextSink;
 
         public AOPifySink(IMessageSink nextSink)
         {
+            _nextSink = nextSink;
+        }
+
+        public AOPifySink(IMessageSink nextSink, ProcessMode processMode, Type processorType)
+        {
+            _processMode = processMode;
+            _processorType = processorType;
             _nextSink = nextSink;
         }
 
@@ -31,16 +40,17 @@ namespace AOPify.Aspects.Sinks
         {
             IMethodCallMessage methodCallMessage = (message as IMethodCallMessage);
             MethodCallContext callContext = new MethodCallContext(ref methodCallMessage);
+
+            //
             PreProcess(ref callContext);
 
-            //Todo: try catch issue
             _timer = new ExecutionTimer();
             _timer.Start(callContext.MethodName);
 
             IMessage returnMessage = _nextSink.SyncProcessMessage(message);
             IMethodReturnMessage methodReturnMessage = (returnMessage as IMethodReturnMessage);
             PostProcess(message as IMethodCallMessage, methodReturnMessage);
-
+            //
             return methodReturnMessage;
         }
 

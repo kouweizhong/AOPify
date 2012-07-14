@@ -1,12 +1,26 @@
 using System;
 using System.Runtime.Remoting.Contexts;
 using System.Runtime.Remoting.Messaging;
+using AOPify.Aspects.Enum;
 using AOPify.Aspects.Sinks;
 
 namespace AOPify.Aspects.AspectProperties
 {
     internal class AOPifyProperty : IContextProperty, IContributeObjectSink //IContributeServerContextSink
     {
+        private readonly ProcessMode _processMode;
+        private readonly Type _processorType;
+
+        public AOPifyProperty(ProcessMode processMode, Type processorType)
+        {
+            _processMode = processMode;
+            _processorType = processorType;
+        }
+
+        public AOPifyProperty()
+        {
+        }
+
         #region IContextProperty Members
 
         public string Name
@@ -34,7 +48,16 @@ namespace AOPify.Aspects.AspectProperties
 
         public IMessageSink GetObjectSink(MarshalByRefObject obj, IMessageSink nextSink)
         {
-            return new AOPifySink(nextSink);
+            AOPifySink sink;
+            if (_processorType != null)
+            {
+               sink= new AOPifySink(nextSink, _processMode, _processorType);
+            }
+            else
+            {
+                sink=new AOPifySink(nextSink);
+            }
+            return sink;
         }
 
         #endregion

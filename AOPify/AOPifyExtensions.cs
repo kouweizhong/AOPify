@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Transactions;
 
 namespace AOPify
 {
@@ -165,6 +166,40 @@ namespace AOPify
         public static AOPify ProcessAsync(this AOPify aspect)
         {
             return aspect.Combine(process => process.BeginInvoke(process.EndInvoke, null));
+        }
+
+        [DebuggerStepThrough]
+        public static AOPify WithTransaction(this AOPify aspect, Action completeCallback, Action rollbackCallback, TransactionOptions transactionOptions, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required)
+        {
+            return aspect.Combine(process => InnerTransactionInvoker(completeCallback, rollbackCallback, transactionOptions, transactionScopeOption, process));
+        }
+        [DebuggerStepThrough]
+        public static AOPify WithTransaction(this AOPify aspect, TransactionOptions transactionOptions, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required)
+        {
+            return aspect.Combine(process => InnerTransactionInvoker(null, null, transactionOptions, transactionScopeOption, process));
+        }
+
+        [DebuggerStepThrough]
+        public static AOPify WithTransaction(this AOPify aspect, Action completeCallback, Action rollbackCallback, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required)
+        {
+            return aspect.Combine(process => InnerTransactionInvoker(completeCallback, rollbackCallback, new TransactionOptions(), transactionScopeOption, process));
+        }
+
+        private static void InnerTransactionInvoker(Action completeCallback, Action rollbackCallback, TransactionOptions transactionOptions, TransactionScopeOption transactionScopeOption, Action process)
+        {
+            using (TransactionScope scope = new TransactionScope(transactionScopeOption, transactionOptions))
+            {
+                try
+                {
+                    process();
+                    scope.Complete();
+                    if (completeCallback != null) completeCallback();
+                }
+                catch (Exception)
+                {
+                    if (rollbackCallback != null) rollbackCallback();
+                }
+            }
         }
     }
 }

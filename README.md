@@ -15,6 +15,7 @@
   - Run
   - Return
   - RegisterLogger
+  - WithTransaction
   
 <strong>List of supported attributes with process modes and processors</strong>
 <br/>
