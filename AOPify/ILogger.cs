@@ -2,7 +2,7 @@
 
 namespace AOPify
 {
-    public interface IAOPLogger
+    public interface ILogger
     {
         void Log(string format, params object[] args);
         void Error(Exception exception);

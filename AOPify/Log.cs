@@ -13,7 +13,7 @@ namespace AOPify
             }
         }
         internal Type Target;
-        internal IAOPLogger Logger;
+        internal ILogger Logger;
         internal MethodBase CurrentMethod;
 
         public Log For<T>(T target)
@@ -27,12 +27,12 @@ namespace AOPify
             return this;
         }
 
-        public Log Use<T>() where T : IAOPLogger
+        public Log Use<T>() where T : ILogger
         {
             Logger = Activator.CreateInstance<T>();
             return this;
         }
-        public Log Use<T>(T logger) where T : IAOPLogger
+        public Log Use<T>(T logger) where T : ILogger
         {
             Logger = logger;
             return this;

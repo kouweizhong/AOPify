@@ -14,7 +14,7 @@ namespace AOPify
         internal Log Logger;
 
         [DebuggerStepThrough]
-        public AOPify Combine(Action<Action> newAspectDelegate)
+        internal AOPify Combine(Action<Action> newAspectDelegate)
         {
             if (ActionChain == null)
             {

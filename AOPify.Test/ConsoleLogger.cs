@@ -5,7 +5,7 @@ namespace AOPify.Test
     /// <summary>
     /// Create a class for your log operations
     /// </summary>
-    public class ConsoleLogger : IAOPLogger
+    public class ConsoleLogger : ILogger
     {
         public void Log(string format, params object[] args)
         {

@@ -6,7 +6,7 @@ namespace AOPify.Aspects.Common
 {
     public static class ReflectionHelper
     {
-        public static string GetMethodParamersWithNameValues(MethodBase method, params object[] values)
+        public static string GetMethodParametersWithNameValues(MethodBase method, params object[] values)
         {
             ParameterInfo[] parms = method.GetParameters();
 

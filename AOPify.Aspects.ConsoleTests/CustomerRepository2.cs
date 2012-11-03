@@ -13,7 +13,7 @@ namespace AOPify.Aspects.ConsoleTests
             set;
         }
 
-        public Customer GetCustomerByID(int id)
+        public Customer GetCustomerById(int id)
         {
             return new Customer(id);
         }

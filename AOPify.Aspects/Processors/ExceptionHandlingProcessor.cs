@@ -34,9 +34,9 @@ namespace AOPify.Aspects.Processors
 
         #region Implementation of ILoggable
 
-        public void Log(string message)
+        public virtual void Log(string message)
         {
-            throw new NotImplementedException();
+
         }
 
         #endregion

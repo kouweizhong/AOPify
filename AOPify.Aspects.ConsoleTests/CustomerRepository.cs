@@ -17,7 +17,7 @@ namespace AOPify.Aspects.ConsoleTests
 
         [PreProcess(typeof(ConsolePreAspectProcessor), PreProcessMode.OnBefore, PreProcessMode.WithInputParameters)]
         [PostProcess(typeof(ConsolePostAspectProcessor), PostProcessMode.OnAfter, PostProcessMode.WithReturnType, PostProcessMode.OnError, PostProcessMode.HowLong)]
-        public Customer GetCustomerByID(int id)
+        public Customer GetCustomerById(int id)
         {
             return new Customer(id);
         }
