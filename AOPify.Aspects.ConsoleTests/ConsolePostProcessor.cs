@@ -1,20 +1,14 @@
 using System;
 using AOPify.Aspects.Contexts;
-using AOPify.Aspects.IProcessor;
+using AOPify.Aspects.Interface;
 
 namespace AOPify.Aspects.ConsoleTests
 {
-    public class ConsolePostAspectProcessor : IPostAspectProcessor
+    public class ConsolePostProcessor : IPostAspectProcessor
     {
-        public void Process(MethodCallContext callContext, ref MethodReturnContext returnContext)
+        public void Process(PostProcessContext context)
         {
-            //Log(String.Format("Return:{0}", returnContext.ReturnValue));
-            //Log(String.Format("PostProcessing:{0}", callContext.MethodName));
-        }
-
-        public void Log(string message)
-        {
-            Console.WriteLine(message);
+            Console.WriteLine(context.ReturnContext.ReturnValue);
         }
     }
 }

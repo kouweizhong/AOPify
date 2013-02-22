@@ -3,7 +3,7 @@ using System.Text;
 
 namespace AOPify.Aspects.Common
 {
-    internal static class AspectHelper
+    public static class AspectHelper
     {
         public static string GetFormattedInputParameters(IMethodMessage methodMessageCall)
         {

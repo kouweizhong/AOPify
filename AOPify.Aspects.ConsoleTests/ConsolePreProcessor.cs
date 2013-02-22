@@ -1,19 +1,14 @@
 using System;
 using AOPify.Aspects.Contexts;
-using AOPify.Aspects.IProcessor;
+using AOPify.Aspects.Interface;
 
 namespace AOPify.Aspects.ConsoleTests
 {
-    public class ConsolePreAspectProcessor : IPreAspectProcessor
+    public class ConsolePreProcessor : IPreAspectProcessor
     {
-        public void Process(ref MethodCallContext callContext)
+        public void Process(PreProcessContext context)
         {
-            // Log(String.Format("PreProcessing:{0}", callContext.MethodName));
-        }
-
-        public void Log(string message)
-        {
-            Console.WriteLine(message);
+            Console.WriteLine(context.CallContext.MethodName);
         }
     }
 }

@@ -70,20 +70,19 @@
     <Compile Include="Attributes\PreProcessAttribute.cs" />
     <Compile Include="Base\AspectObject.cs" />
     <Compile Include="Common\AspectHelper.cs" />
-    <Compile Include="Common\ExecutionTimer.cs" />
     <Compile Include="Common\Extensions.cs" />
     <Compile Include="Common\ReflectionHelper.cs" />
     <Compile Include="Contexts\MethodCallContext.cs" />
     <Compile Include="Contexts\MethodReturnContext.cs" />
-    <Compile Include="Enum\ProcessMode.cs" />
-    <Compile Include="Enum\PostProcessMode.cs" />
-    <Compile Include="Enum\PreProcessMode.cs" />
-    <Compile Include="IProcessor\ILoggable.cs" />
-    <Compile Include="IProcessor\IPostAspectProcessor.cs" />
-    <Compile Include="IProcessor\IPreAspectProcessor.cs" />
+    <Compile Include="Contexts\PostProcessContext.cs" />
+    <Compile Include="Contexts\PreProcessContext.cs" />
+    <Compile Include="Contexts\ProcessContext.cs" />
+    <Compile Include="Interface\IPostAspectProcessor.cs" />
+    <Compile Include="Interface\IPreAspectProcessor.cs" />
     <Compile Include="Processors\ExceptionHandlingProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sinks\AOPifySink.cs" />
+    <Compile Include="Sinks\ContextFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -110,7 +109,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_StartDate="2012/7/3" />
+      <UserProperties BuildVersion_StartDate="2012/7/3" BuildVersion_BuildVersioningStyle="None.None.Increment.TimeStamp" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

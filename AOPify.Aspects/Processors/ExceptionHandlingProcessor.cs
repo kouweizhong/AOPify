@@ -1,28 +1,34 @@
 using System;
-using System.Runtime.Remoting.Messaging;
 using AOPify.Aspects.Contexts;
-using AOPify.Aspects.IProcessor;
+using AOPify.Aspects.Interface;
+using AOPify.Aspects.Sinks;
 
 namespace AOPify.Aspects.Processors
 {
     public abstract class ExceptionHandlingAspectProcessor : IPostAspectProcessor
     {
-        public void Process(MethodCallContext callContext, ref MethodReturnContext returnContext)
+        public void Process(PostProcessContext preProcessContext)
         {
-            Exception exception = returnContext.Exception;
+            throw new NotImplementedException();
+        }
 
-            if (exception != null)
-            {
-                HandleException(exception);
+        public virtual void OnAfter(MethodCallContext callContext)
+        {
+            
+        }
 
-                Exception newException = GetNewException(exception);
+        public virtual void OnError(Exception exception)
+        {
+        }
 
-                if (!ReferenceEquals(exception, newException))
-                {
-                    returnContext =
-                        (IMethodReturnMessage)new ReturnMessage(newException, callContext) as MethodReturnContext;
-                }
-            }
+        public virtual void WithReturnType()
+        {
+           
+        }
+
+        public void HowLong(string operation, int milliseconds)
+        {
+            
         }
 
         public abstract void HandleException(Exception exception);
@@ -31,14 +37,5 @@ namespace AOPify.Aspects.Processors
         {
             return oldException;
         }
-
-        #region Implementation of ILoggable
-
-        public virtual void Log(string message)
-        {
-
-        }
-
-        #endregion
     }
 }

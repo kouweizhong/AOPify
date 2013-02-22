@@ -7,12 +7,19 @@ namespace AOPify.Aspects.ConsoleTests
         [STAThread]
         static void Main()
         {
-            CustomerRepository customerRepository = new CustomerRepository();
-            Console.WriteLine(customerRepository.GetCustomerById(10));
-            Customer customer = customerRepository.ThrowException();
-
+            MothodsTest();
             Console.ReadLine();
         }
 
+        private static void MothodsTest()
+        {
+            CustomerRepository customerRepository = new CustomerRepository();
+            Customer customer = customerRepository.GetCustomerById(10);
+          
+            if (customer != null)
+            {
+                Console.WriteLine(customer.Id);
+            }
+        }
     }
 }

@@ -1,17 +1,15 @@
 using System;
-using AOPify.Aspects.Enum;
-using AOPify.Aspects.IProcessor;
+using AOPify.Aspects.Interface;
 
 namespace AOPify.Aspects.Attributes
 {
-    [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Constructor | AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = false)]
     public class PostProcessAttribute : Attribute
     {
-        private readonly PostProcessMode[] _processModes;
+
         private readonly IPostAspectProcessor _aspectProcessor;
-        public PostProcessAttribute(Type postProcessorType, params PostProcessMode[] processModes)
+        public PostProcessAttribute(Type postProcessorType)
         {
-            _processModes = processModes;
             _aspectProcessor = Activator.CreateInstance(postProcessorType) as IPostAspectProcessor;
 
             if (_aspectProcessor == null)
@@ -24,11 +22,6 @@ namespace AOPify.Aspects.Attributes
         public IPostAspectProcessor AspectProcessor
         {
             get { return _aspectProcessor; }
-        }
-
-        public PostProcessMode[] GetProcessModes()
-        {
-            return _processModes;
         }
     }
 }
