@@ -17,14 +17,8 @@
   - RegisterLogger
   - WithTransaction
   
-<strong>List of supported attributes with process modes and processors</strong>
+<strong>List of supported attributes</strong>
 <br/>
 (sample usage exist in source code look at: https://github.com/ziyasal/AOPify/tree/master/AOPify.Aspects.ConsoleTests)
-  - PreProcess  : with options 
-      - PreProcessMode.OnBefore,
-      - PreProcessMode.WithInputParameters
-  - PostProcess : with options 
-      - PostProcessMode.OnAfter,
-      - PostProcessMode.WithReturnType,
-      - PostProcessMode.OnError, 
-      - PostProcessMode.HowLong
+  - PreProcess
+  - PostProcess 
