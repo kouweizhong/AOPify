@@ -1,4 +1,4 @@
-<strong>AOPify</strong> provides basic AOP features with fluent style.
+**AOPify** is a lightweight AOP framework that provides basic, fluent style AOP features. It also provides custom logging capability
 
 <strong>List of supported methods</strong>
   - Until
