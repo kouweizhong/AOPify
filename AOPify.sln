@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPify.Aspects", "AOPify.As
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPify.Aspects.ConsoleTests", "AOPify.Aspects.ConsoleTests\AOPify.Aspects.ConsoleTests.csproj", "{A6C1680A-D150-4F33-85CE-4525DBC469C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPify.TDD", "AOPify.TDD\AOPify.TDD.csproj", "{2A8A0B9B-ACE2-4C3D-B3CD-EC8DFE69FB1D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPify.NLog", "AOPify.NLog\AOPify.NLog.csproj", "{1F9B6380-E8AD-46EE-8EA6-FB6F664BCAE8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{588688E7-F4F2-494A-BEF2-D2D139440063}"
