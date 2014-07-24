@@ -1,11 +1,11 @@
 ﻿using System;
+using AOPify.Logging;
 using System.Diagnostics;
 
 namespace AOPify
 {
     public class AOPify
     {
-
         internal Action<Action> ActionChain;
         internal Delegate ProcessDelegate;
         internal Action BeforeAction;
@@ -68,6 +68,10 @@ namespace AOPify
 
         public AOPify RegisterLogger(Log logger)
         {
+            if (logger == null || logger.Logger == null)
+            {
+                Logger = Log.It.Use<NullLogger>();
+            }
             Logger = logger;
             return this;
         }

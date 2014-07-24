@@ -1,10 +1,15 @@
 ﻿using System;
+using AOPify.Logging;
 using System.Reflection;
 
 namespace AOPify
 {
     public class Log
     {
+        internal Type Target;
+        internal ILogger Logger;
+        internal MethodBase CurrentMethod;
+
         public static Log It
         {
             get
@@ -12,16 +17,12 @@ namespace AOPify
                 return new Log();
             }
         }
-        internal Type Target;
-        internal ILogger Logger;
-        internal MethodBase CurrentMethod;
-
-        public Log For<T>(T target)
+        public Log Using<T>(T target)
         {
             Target = target.GetType();
             return this;
         }
-        public Log For(Type type)
+        public Log Using(Type type)
         {
             Target = type;
             return this;

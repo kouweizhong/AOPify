@@ -1,7 +1,7 @@
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Diagnostics;
 using System.Transactions;
 
 namespace AOPify
@@ -59,9 +59,9 @@ namespace AOPify
         {
             return aopify.Combine(process =>
             {
-                aopify.Logger.Logger.Log(beforeMessage);
+                aopify.Logger.Logger.Info(beforeMessage);
                 process();
-                aopify.Logger.Logger.Log(afterMessage);
+                aopify.Logger.Logger.Info(afterMessage);
             });
         }
 
@@ -71,10 +71,10 @@ namespace AOPify
             return aopify.Combine(process =>
            {
                aopify.Logger.CurrentMethod = currentMethod;
-               aopify.Logger.Logger.Log(
+               aopify.Logger.Logger.Info(
                    "START type :{0}, method :{1}".FormatWith(aopify.Logger.Target.Name, currentMethod == null ? process.Method.Name : currentMethod.Name));
                process();
-               aopify.Logger.Logger.Log("END type :{0}, method :{1}".FormatWith(aopify.Logger.Target.Name, currentMethod == null ? process.Method.Name : currentMethod.Name));
+               aopify.Logger.Logger.Info("END type :{0}, method :{1}".FormatWith(aopify.Logger.Target.Name, currentMethod == null ? process.Method.Name : currentMethod.Name));
            });
         }
 
@@ -98,11 +98,11 @@ namespace AOPify
             return aopify.Combine(process =>
             {
                 DateTime start = DateTime.Now;
-                aopify.Logger.Logger.Log("{0} {1} Method Name : {2}".FormatWith(startMessage, start, aopify.Logger.CurrentMethod.Name));
+                aopify.Logger.Logger.Info("{0} {1} Method Name : {2}".FormatWith(startMessage, start, aopify.Logger.CurrentMethod.Name));
                 process();
                 DateTime end = DateTime.Now;
                 TimeSpan duration = end - start;
-                aopify.Logger.Logger.Log("{0} : End Time :{1} , Method Name: {2}".FormatWith(endMessage, end, aopify.Logger.CurrentMethod.Name));
+                aopify.Logger.Logger.Info("{0} : End Time :{1} , Method Name: {2}".FormatWith(endMessage, end, aopify.Logger.CurrentMethod.Name));
             });
         }
 
@@ -112,11 +112,11 @@ namespace AOPify
             return aopify.Combine(process =>
             {
                 DateTime start = DateTime.Now;
-                aopify.Logger.Logger.Log("Start Time : {0}, Method Name : {1}".FormatWith(start, aopify.Logger.CurrentMethod.Name));
+                aopify.Logger.Logger.Info("Start Time : {0}, Method Name : {1}".FormatWith(start, aopify.Logger.CurrentMethod.Name));
                 process();
                 DateTime end = DateTime.Now;
                 TimeSpan duration = end - start;
-                aopify.Logger.Logger.Log("End Time : {0}, Method Name :{1}, TotalMs: {2}".FormatWith(end, aopify.Logger.CurrentMethod.Name, duration.TotalMilliseconds));
+                aopify.Logger.Logger.Info("End Time : {0}, Method Name :{1}, TotalMs: {2}".FormatWith(end, aopify.Logger.CurrentMethod.Name, duration.TotalMilliseconds));
             });
         }
 

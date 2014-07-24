@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace AOPify.Test
+namespace AOPify.ConsoleSample
 {
     class Program
     {
@@ -27,7 +27,7 @@ namespace AOPify.Test
 
             //Register logger with logger instance
             AOPify.Let
-                .RegisterLogger(Log.It.For(typeof(Program)).Use(consoleLogger))
+                .RegisterLogger(Log.It.Using(typeof(Program)).Use(consoleLogger))
                 .Log("Before Log {0}".FormatWith(MethodBase.GetCurrentMethod().Name), "After Log {0}".FormatWith(MethodBase.GetCurrentMethod().Name))
                 .Run(() => Console.WriteLine("Run executed"));
 
@@ -35,7 +35,7 @@ namespace AOPify.Test
 
             //Register logger with logger Generic (system will create new instance)
             AOPify.Let
-                .RegisterLogger(Log.It.For(typeof(Program)).Use<ConsoleLogger>())
+                .RegisterLogger(Log.It.Using(typeof(Program)).Use<ConsoleLogger>())
                 .Log(MethodBase.GetCurrentMethod())
                 .Run(() => Console.WriteLine("Run executed"));
 
@@ -43,7 +43,7 @@ namespace AOPify.Test
 
             //HowLong
             AOPify.Let
-               .RegisterLogger(Log.It.For(typeof(Program)).Use<ConsoleLogger>())
+               .RegisterLogger(Log.It.Using(typeof(Program)).Use<ConsoleLogger>())
                .Log(MethodBase.GetCurrentMethod())
                .HowLong()
                .Run(() => Console.WriteLine("Run executed with How Long"));
@@ -57,7 +57,7 @@ namespace AOPify.Test
 
             //Delay
             AOPify.Let
-               .RegisterLogger(Log.It.For(typeof(Program)).Use<ConsoleLogger>())
+               .RegisterLogger(Log.It.Using(typeof(Program)).Use<ConsoleLogger>())
                .Log(MethodBase.GetCurrentMethod())
                .Delay(10000)
                .Run(() => Console.WriteLine("Delay : Run executed"));
@@ -66,7 +66,7 @@ namespace AOPify.Test
 
             //Until
             AOPify.Let
-               .RegisterLogger(Log.It.For(typeof(Program)).Use<ConsoleLogger>())
+               .RegisterLogger(Log.It.Using(typeof(Program)).Use<ConsoleLogger>())
                .Log(MethodBase.GetCurrentMethod())
                .Until(() => new Random().Next(0, 100) % 5 == 0)
                .Run(() => Console.WriteLine("Until : Run executed"));
@@ -78,7 +78,7 @@ namespace AOPify.Test
         private static void MyMethod(string testStr, int count, int orderNo)
         {
             AOPify.Let
-             .RegisterLogger(Log.It.For(typeof(Program)).Use<ConsoleLogger>())
+             .RegisterLogger(Log.It.Using(typeof(Program)).Use<ConsoleLogger>())
              .Log(MethodBase.GetCurrentMethod())
              .Run(() => Console.WriteLine("Run Executed"));
         }
