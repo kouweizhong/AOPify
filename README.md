@@ -16,9 +16,3 @@
   - Return
   - RegisterLogger
   - WithTransaction
-  
-<strong>List of supported attributes</strong>
-<br/>
-(sample usage exist in source code look at: https://github.com/ziyasal/AOPify/tree/master/AOPify.Aspects.ConsoleTests)
-  - PreProcess
-  - PostProcess 
