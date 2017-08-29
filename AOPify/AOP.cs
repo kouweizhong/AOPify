@@ -4,17 +4,18 @@ using System.Diagnostics;
 
 namespace AOPify
 {
-    public class AOPify
+    // ReSharper disable once InconsistentNaming
+    public class AOP
     {
         internal Action<Action> ActionChain;
         internal Delegate ProcessDelegate;
         internal Action BeforeAction;
         internal Action AfterAction;
 
-        internal Log Logger;
+        internal Loggr Logger;
 
         [DebuggerStepThrough]
-        internal AOPify Combine(Action<Action> newAspectDelegate)
+        internal AOP Combine(Action<Action> newAspectDelegate)
         {
             if (ActionChain == null)
             {
@@ -23,15 +24,15 @@ namespace AOPify
             else
             {
                 Action<Action> existingChain = ActionChain;
-                Action<Action> callAnother = process => existingChain(() => newAspectDelegate(process));
-                ActionChain = callAnother;
+                void CallAnother(Action process) => existingChain(() => newAspectDelegate(process));
+                ActionChain = CallAnother;
             }
             return this;
         }
         [DebuggerStepThrough]
         public void Run(Action process)
         {
-            if (BeforeAction != null) BeforeAction();
+            BeforeAction?.Invoke();
 
             if (ActionChain == null)
             {
@@ -42,7 +43,7 @@ namespace AOPify
                 ActionChain(process);
             }
 
-            if (AfterAction != null) AfterAction();
+            AfterAction?.Invoke();
         }
 
         [DebuggerStepThrough]
@@ -66,22 +67,22 @@ namespace AOPify
             return returnValue;
         }
 
-        public AOPify RegisterLogger(Log logger)
+        public AOP RegisterLogger(Loggr logger)
         {
-            if (logger == null || logger.Logger == null)
+            if (logger?.Logger == null)
             {
-                Logger = Log.It.Use<NullLogger>();
+                Logger = Loggr.Instance.Using<NullLogger>();
             }
             Logger = logger;
             return this;
         }
 
-        public static AOPify Let
+        public static AOP Instance
         {
             [DebuggerStepThrough]
             get
             {
-                return new AOPify();
+                return new AOP();
             }
         }
     }

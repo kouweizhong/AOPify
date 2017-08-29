@@ -56,11 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AOPify.cs" />
-    <Compile Include="AOPifyExtensions.cs" />
+    <Compile Include="AOP.cs" />
+    <Compile Include="AOPExtensions.cs" />
     <Compile Include="Common\ReflectionHelper.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Log.cs" />
+    <Compile Include="Loggr.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\NullLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

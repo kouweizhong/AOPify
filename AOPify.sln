@@ -1,18 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+Microsoft Visual Studio Solution File, Format Version 15.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPify", "AOPify\AOPify.csproj", "{AD92F779-B486-420E-A773-E80BA44821E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPify.NLog", "AOPify.NLog\AOPify.NLog.csproj", "{1F9B6380-E8AD-46EE-8EA6-FB6F664BCAE8}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{588688E7-F4F2-494A-BEF2-D2D139440063}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AOPify.ConsoleSample", "AOPify.ConsoleSample\AOPify.ConsoleSample.csproj", "{9A684768-8C0E-42FC-9E28-0F305C0ACF49}"
 EndProject

@@ -6,11 +6,12 @@ using System.Transactions;
 
 namespace AOPify
 {
-    public static class AOPifyExtensions
+    // ReSharper disable once InconsistentNaming
+    public static class AOPExtensions
     {
 
         [DebuggerStepThrough]
-        public static AOPify Delay(this AOPify aopify, int milliseconds)
+        public static AOP Delay(this AOP aopify, int milliseconds)
         {
             return aopify.Combine(process =>
                                       {
@@ -20,7 +21,7 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify Until(this AOPify aopify, Func<bool> test)
+        public static AOP Until(this AOP aopify, Func<bool> test)
         {
             return aopify.Combine(process =>
                                       {
@@ -31,7 +32,7 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify While(this AOPify aopify, Func<bool> test)
+        public static AOP While(this AOP aopify, Func<bool> test)
         {
             return aopify.Combine(process =>
                                       {
@@ -41,7 +42,7 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify WhenTrue(this AOPify aopify, params Func<bool>[] conditions)
+        public static AOP WhenTrue(this AOP aopify, params Func<bool>[] conditions)
         {
             return aopify.Combine(process =>
                                       {
@@ -55,7 +56,7 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify Log(this AOPify aopify, string beforeMessage, string afterMessage)
+        public static AOP Log(this AOP aopify, string beforeMessage, string afterMessage)
         {
             return aopify.Combine(process =>
             {
@@ -66,7 +67,7 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify Log(this AOPify aopify, MethodBase currentMethod)
+        public static AOP Log(this AOP aopify, MethodBase currentMethod)
         {
             return aopify.Combine(process =>
            {
@@ -79,21 +80,21 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify Before(this AOPify aopify, Action beforeAction)
+        public static AOP Before(this AOP aopify, Action beforeAction)
         {
             aopify.BeforeAction = beforeAction;
             return aopify;
         }
 
         [DebuggerStepThrough]
-        public static AOPify After(this AOPify aopify, Action afterAction)
+        public static AOP After(this AOP aopify, Action afterAction)
         {
             aopify.AfterAction = afterAction;
             return aopify;
         }
 
         [DebuggerStepThrough]
-        public static AOPify HowLong(this AOPify aopify, string startMessage, string endMessage)
+        public static AOP HowLong(this AOP aopify, string startMessage, string endMessage)
         {
             return aopify.Combine(process =>
             {
@@ -107,7 +108,7 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify HowLong(this AOPify aopify)
+        public static AOP HowLong(this AOP aopify)
         {
             return aopify.Combine(process =>
             {
@@ -121,7 +122,7 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify Catch(this AOPify aopify, Action<Exception> catchAction)
+        public static AOP Catch(this AOP aopify, Action<Exception> catchAction)
         {
             return aopify.Combine(process =>
                                       {
@@ -137,7 +138,7 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify CatchAndThrow(this AOPify aspect, Action<Exception> catchAction)
+        public static AOP CatchAndThrow(this AOP aspect, Action<Exception> catchAction)
         {
             return aspect.Combine(process =>
                                       {
@@ -154,7 +155,7 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify ProcessAsync(this AOPify aspect, Action completeCallback)
+        public static AOP ProcessAsync(this AOP aspect, Action completeCallback)
         {
             return aspect.Combine(process => process.BeginInvoke(asyncresult =>
                                                                  {
@@ -163,24 +164,24 @@ namespace AOPify
         }
 
         [DebuggerStepThrough]
-        public static AOPify ProcessAsync(this AOPify aspect)
+        public static AOP ProcessAsync(this AOP aspect)
         {
             return aspect.Combine(process => process.BeginInvoke(process.EndInvoke, null));
         }
 
         [DebuggerStepThrough]
-        public static AOPify WithTransaction(this AOPify aspect, Action completeCallback, Action rollbackCallback, TransactionOptions transactionOptions, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required)
+        public static AOP WithTransaction(this AOP aspect, Action completeCallback, Action rollbackCallback, TransactionOptions transactionOptions, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required)
         {
             return aspect.Combine(process => InnerTransactionInvoker(completeCallback, rollbackCallback, transactionOptions, transactionScopeOption, process));
         }
         [DebuggerStepThrough]
-        public static AOPify WithTransaction(this AOPify aspect, TransactionOptions transactionOptions, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required)
+        public static AOP WithTransaction(this AOP aspect, TransactionOptions transactionOptions, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required)
         {
             return aspect.Combine(process => InnerTransactionInvoker(null, null, transactionOptions, transactionScopeOption, process));
         }
 
         [DebuggerStepThrough]
-        public static AOPify WithTransaction(this AOPify aspect, Action completeCallback, Action rollbackCallback, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required)
+        public static AOP WithTransaction(this AOP aspect, Action completeCallback, Action rollbackCallback, TransactionScopeOption transactionScopeOption = TransactionScopeOption.Required)
         {
             return aspect.Combine(process => InnerTransactionInvoker(completeCallback, rollbackCallback, new TransactionOptions(), transactionScopeOption, process));
         }
@@ -193,11 +194,11 @@ namespace AOPify
                 {
                     process();
                     scope.Complete();
-                    if (completeCallback != null) completeCallback();
+                    completeCallback?.Invoke();
                 }
                 catch (Exception)
                 {
-                    if (rollbackCallback != null) rollbackCallback();
+                    rollbackCallback?.Invoke();
                 }
             }
         }
